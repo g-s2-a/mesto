@@ -26,5 +26,10 @@ function formSubmitHandler(event){
 
 function togglePopup(event){
     //event.preventDefault();
+    if(!popup.classList.contains('popup_open')){
+        nameInput.value = profileTitle.textContent;
+        jobInput.value = profileKind.textContent;
+    }
+
     popup.classList.toggle('popup_open'); 
 };
