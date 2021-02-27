@@ -1,0 +1,17 @@
+.profile {
+    display: grid;
+    grid:
+        "i e a"
+        "i k a";
+    align-items: center;
+    grid-template-columns: min-content auto;
+    padding-top: 37px;
+    width: 100%;
+}
+
+@media screen and (max-width: 720px){
+    .profile {
+        display: flex;
+        flex-direction: column;
+    }
+}

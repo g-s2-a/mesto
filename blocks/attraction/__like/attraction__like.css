@@ -1,0 +1,20 @@
+.attraction__like {
+    background: white;
+    width: 22px;
+    height: 19px;
+    border: 0;
+    background-image: url(../../../images/vector-love.svg);
+    grid-area: l;
+}
+
+.attraction__like:hover {
+    opacity: 0.5;    
+}
+
+.attraction__like:active {
+    background-image: url(../../../images/vector-love-b.svg);   
+}
+
+.attraction__like:focus {
+    outline:none;   
+}

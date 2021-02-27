@@ -1,0 +1,4 @@
+.profile__image {
+    grid-area: i;
+    border-radius: 50% 50% 50% 50%;
+}

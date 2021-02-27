@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto Russia</title>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+        <img class="header__logo" alt="Mesto Russia" src="./images/logo.svg">
+        <hr class="header__line">
+    </header>
+
+    <main class="content">
+        <article class="profile">
+            <img class="profile__image" title="Жак-Ив Кусто" src="./images/image.png">
+            <div class="profile__edit">
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                <button class="profile__edit-button"></button>
+            </div> 
+            <p class="profile__kind-of-activity">Исследователь океана</p>
+            <button class="profile__add-button"></button>
+        </article> 
+        <ul class="places">
+          <li class="attraction">
+            <img class="attraction__image" title="Карачаевск" src="./images/kirill-pershin-1088404-unsplash.jpg">
+            <p class="attraction__name-attraction">Карачаевск</p>
+            <button class="attraction__like"></button>
+          </li>
+          <li class="attraction">
+            <img class="attraction__image" title="Гора Эльбрус" src="./images/kirill-pershin-1404681-unsplash.jpg">
+            <p class="attraction__name-attraction">Гора Эльбрус</p>
+            <button class="attraction__like"></button>
+          </li>
+          <li class="attraction">
+            <img class="attraction__image" title="Домбай" src="./images/kirill-pershin-1556355-unsplash.jpg">
+            <p class="attraction__name-attraction">Домбай</p>
+            <button class="attraction__like"></button>
+          </li>
+          <li class="attraction">
+            <img class="attraction__image" title="Гора Эльбрус" src="./images/kirill-pershin-1404681-unsplash.jpg">
+            <p class="attraction__name-attraction">Гора Эльбрус</p>
+            <button class="attraction__like"></button>
+          </li>
+          <li class="attraction">
+            <img class="attraction__image" title="Домбай" src="./images/kirill-pershin-1556355-unsplash.jpg">
+            <p class="attraction__name-attraction">Домбай</p>
+            <button class="attraction__like"></button>
+          </li>
+          <li class="attraction">
+            <img class="attraction__image" title="Карачаево-Черкесия" src="./images/kirill-pershin-1088404-unsplash.jpg">
+            <p class="attraction__name-attraction">Карачаево-Черкесия</p>
+            <button class="attraction__like"></button>
+          </li>
+        </ul>     
+    </main>
+
+    <footer class="footer">
+      <p class="footer__author">© 2020 Mesto Russia</p>
+    </footer>
+
+    <div class="popup">
+      <form class="popup__content">
+        <button type="button" class="popup__close"></button>
+        <h1 class="popup__head">Редактировать профиль</h1>
+        <input class="popup__edit" id="popup__name" >
+        <input class="popup__edit" id="popup__profession" >
+        <button type="submit" class="popup__save">Сохранить</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script src="js/popup.js"></script>
+</body>
+</html>
