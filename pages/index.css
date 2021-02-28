@@ -1,3 +1,4 @@
+@import url(../vendor/normalize.css);
 @import url(../vendor/fonts/fonts.css);
 @import url(../blocks/content/content.css);
 @import url(../blocks/page/page.css);
@@ -16,6 +17,7 @@
 @import url(../blocks/attraction/__name-attraction/attraction__name-attraction.css);
 @import url(../blocks/attraction/__image/attraction__image.css);
 @import url(../blocks/attraction/__like/attraction__like.css);
+@import url(../blocks/attraction/__like/_press/attraction__like_press.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__author/footer__author.css);
 @import url(../blocks/popup/popup.css);

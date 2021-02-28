@@ -8,13 +8,9 @@
 }
 
 .attraction__like:hover {
-    opacity: 0.5;    
-}
-
-.attraction__like:active {
-    background-image: url(../../../images/vector-love-b.svg);   
+    opacity: 0.5;
 }
 
 .attraction__like:focus {
-    outline:none;   
+    outline:none;
 }

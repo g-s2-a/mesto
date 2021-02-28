@@ -6,13 +6,18 @@ let nameInput = document.querySelector("#popup__name");
 let jobInput = document.querySelector("#popup__profession");
 let profileTitle = document.querySelector(".profile__title");
 let profileKind = document.querySelector(".profile__kind-of-activity");
+let Likes = document.querySelectorAll(".attraction__like");
+
+Likes.forEach(function(item) {
+  item.addEventListener("click",toggleLike);
+});
 
 showPB.addEventListener("click",togglePopup);
 closePB.addEventListener("click",togglePopup);
 popup.addEventListener("click",togglePopup);
 
-formElement.addEventListener("click",function (event){ 
-    event.stopPropagation(); // останавливает распространиение события клика на родителей элемента  
+formElement.addEventListener("click",function (event){
+    event.stopPropagation(); // останавливает распространиение события клика на родителей элемента
 });
 
 formElement.addEventListener("submit", formSubmitHandler);
@@ -20,8 +25,8 @@ formElement.addEventListener("submit", formSubmitHandler);
 function formSubmitHandler(event){
     event.preventDefault();
     profileTitle.textContent = nameInput.value;
-    profileKind.textContent = jobInput.value; 
-    togglePopup();  
+    profileKind.textContent = jobInput.value;
+    togglePopup();
 };
 
 function togglePopup(event){
@@ -29,5 +34,10 @@ function togglePopup(event){
         nameInput.value = profileTitle.textContent;
         jobInput.value = profileKind.textContent;
     }
-    popup.classList.toggle('popup_open'); 
+    popup.classList.toggle('popup_open');
+};
+
+function toggleLike(event){
+  //console.log(event);
+  event.target.classList.toggle('attraction__like_press');
 };
