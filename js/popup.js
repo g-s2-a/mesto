@@ -1,26 +1,11 @@
-let showPB = document.querySelector(".profile__edit-button");
+let showPopupButton = document.querySelector(".profile__edit-button");
 let popup = document.querySelector(".popup");
-let closePB = document.querySelector(".popup__close");
+let closePopupButton = document.querySelector(".popup__close");
 let formElement = document.querySelector(".popup__content");
 let nameInput = document.querySelector("#popup__name");
 let jobInput = document.querySelector("#popup__profession");
 let profileTitle = document.querySelector(".profile__title");
 let profileKind = document.querySelector(".profile__kind-of-activity");
-let Likes = document.querySelectorAll(".attraction__like");
-
-Likes.forEach(function(item) {
-  item.addEventListener("click",toggleLike);
-});
-
-showPB.addEventListener("click",togglePopup);
-closePB.addEventListener("click",togglePopup);
-popup.addEventListener("click",togglePopup);
-
-formElement.addEventListener("click",function (event){
-    event.stopPropagation(); // останавливает распространиение события клика на родителей элемента
-});
-
-formElement.addEventListener("submit", formSubmitHandler);
 
 function formSubmitHandler(event){
     event.preventDefault();
@@ -37,7 +22,12 @@ function togglePopup(event){
     popup.classList.toggle('popup_open');
 };
 
-function toggleLike(event){
-  //console.log(event);
-  event.target.classList.toggle('attraction__like_press');
-};
+function stopPropagation(event){
+  event.stopPropagation(); // останавливает распространиение события клика на родителей элемента
+}
+
+showPopupButton.addEventListener("click",togglePopup);
+closePopupButton.addEventListener("click",togglePopup);
+popup.addEventListener("click",togglePopup);
+formElement.addEventListener("submit", formSubmitHandler);
+formElement.addEventListener("click",stopPropagation);

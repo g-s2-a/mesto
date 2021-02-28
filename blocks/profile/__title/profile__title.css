@@ -2,17 +2,19 @@
     grid-area: t;
     margin: 0;
     color: white;
-    
-    font-family: Inter, Arial, sans-serif;
-    font-style: normal;
     font-weight: 500;
     font-size: 42px;
     line-height: 48px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 332px;
 }
 
 @media screen and (max-width: 720px){
     .profile__title {
         font-size: 27px;
         line-height: 33px;
+        max-width: 208px;
     }
 }

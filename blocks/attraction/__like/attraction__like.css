@@ -14,3 +14,7 @@
 .attraction__like:focus {
     outline:none;
 }
+
+.attraction__like:active {
+  background-image: url(../../../images/vector-love-b.svg);
+}
