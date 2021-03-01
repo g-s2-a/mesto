@@ -22,12 +22,7 @@ function togglePopup(event){
     popup.classList.toggle('popup_open');
 };
 
-function stopPropagation(event){
-  event.stopPropagation(); // останавливает распространиение события клика на родителей элемента
-}
-
 showPopupButton.addEventListener("click",togglePopup);
 closePopupButton.addEventListener("click",togglePopup);
-popup.addEventListener("click",togglePopup);
 formElement.addEventListener("submit", formSubmitHandler);
-formElement.addEventListener("click",stopPropagation);
+
