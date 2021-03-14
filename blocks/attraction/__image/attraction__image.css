@@ -1,5 +1,8 @@
 .attraction__image {
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
-    grid-area: i;
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
+  grid-area: i;
+  height: 282px;
+  object-fit: cover;
+  object-position: top;
 }

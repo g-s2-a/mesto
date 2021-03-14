@@ -24,61 +24,57 @@
         <p class="profile__kind-of-activity">Исследователь океана</p>
         <button type="button" class="profile__add-button"></button>
       </section>
+
       <section class="places" aria-label="места">
-        <article class="attraction">
-          <img class="attraction__image" title="Карачаевск" src="./images/kirill-pershin-1088404-unsplash.jpg"
-            alt="Карачаевск">
-          <h2 class="attraction__name-attraction">Карачаевск</h2>
-          <button type="button" class="attraction__like"></button>
-        </article>
-        <article class="attraction">
-          <img class="attraction__image" title="Гора Эльбрус" src="./images/kirill-pershin-1404681-unsplash.jpg"
-            alt="Гора Эльбрус">
-          <h2 class="attraction__name-attraction">Гора Эльбрус</h2>
-          <button type="button" class="attraction__like"></button>
-        </article>
-        <article class="attraction">
-          <img class="attraction__image" title="Домбай" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай">
-          <h2 class="attraction__name-attraction">Домбай</h2>
-          <button type="button" class="attraction__like"></button>
-        </article>
-        <article class="attraction">
-          <img class="attraction__image" title="Гора Эльбрус" src="./images/kirill-pershin-1404681-unsplash.jpg"
-            alt="Гора Эльбрус">
-          <h2 class="attraction__name-attraction">Гора Эльбрус</h2>
-          <button type="button" class="attraction__like"></button>
-        </article>
-        <article class="attraction">
-          <img class="attraction__image" title="Домбай" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай">
-          <h2 class="attraction__name-attraction">Домбай</h2>
-          <button type="button" class="attraction__like"></button>
-        </article>
-        <article class="attraction">
-          <img class="attraction__image" title="Карачаево-Черкесия" src="./images/kirill-pershin-1088404-unsplash.jpg"
-            alt="Карачаево-Черкесия">
-            <h2 class="attraction__name-attraction">Карачаево-Черкесия</h2>
+        <template id="template_place">
+          <article class="attraction">
+            <img class="attraction__image" title="Карачаевск" src="./images/kirill-pershin-1088404-unsplash.jpg"
+              alt="Карачаевск">
+            <button class="attraction__delete" type="button"></button>
+            <h2 class="attraction__name-attraction">Карачаевск</h2>
             <button type="button" class="attraction__like"></button>
-        </article>
+          </article>
+        </template>
       </section>
+
     </main>
 
     <footer class="footer">
       <p class="footer__author">&copy; 2020 Mesto Russia</p>
     </footer>
-
-    <div class="popup">
-      <form class="popup__content" name="popup__content">
-        <button type="button" class="popup__close"></button>
-        <h3 class="popup__head">Редактировать профиль</h3>
-        <input class="popup__edit" id="popup__name" name="name">
-        <input class="popup__edit" id="popup__profession" name="profession">
-        <button type="submit" class="popup__save">Сохранить</button>
-      </form>
-    </div>
-
   </div>
 
+  <div class="popup" id="popup">
+    <form class="popup__content" name="popup__content">
+      <button type="button" class="popup__close"></button>
+      <h3 class="popup__head">Редактировать профиль</h3>
+      <input class="popup__edit" id="popupName" name="name">
+      <input class="popup__edit" id="popupProfession" name="profession">
+      <button type="submit" class="popup__save">Сохранить</button>
+    </form>
+  </div>
+
+  <div class="popup" id="popupPlace">
+    <form class="popup__content" name="popup__content">
+      <button type="button" class="popup__close"></button>
+      <h3 class="popup__head">Новое место</h3>
+      <input class="popup__edit" id="placeName" name="placeName">
+      <input class="popup__edit" id="placePhoto" name="placePhoto">
+      <button type="submit" class="popup__save" id="popup__save">Сохранить</button>
+    </form>
+  </div>
+
+  <div class="popup popup_foto" id="popupFoto">
+    <form class="popup__content-foto" name="popup__content">
+      <button type="button" class="popup__close"></button>
+      <img src="" alt="" class="popup__img">
+      <p class="popup__description"></p>
+    </form>
+  </div>
+
+  <script src="js/loading.js"></script>
   <script src="js/popup.js"></script>
+
 </body>
 
 </html>

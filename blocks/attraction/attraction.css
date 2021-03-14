@@ -10,4 +10,5 @@
     grid-template-columns: auto 52px;
     grid-template-rows: min-content 79px;
     align-items: center;
+    position: relative;
 }
