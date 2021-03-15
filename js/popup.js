@@ -12,8 +12,6 @@ const profileKind = document.querySelector(".profile__kind-of-activity"); //те
 const buttonAddPlace = document.querySelector(".profile__add-button"); //кнопка добавить место
 const popupPlace = document.querySelector('#popupPlace'); //блок добавления формы
 const closePlaceButton = popupPlace.querySelector(".popup__close"); //кнопка закрытия блока
-const addPlaceForm = popupPlace.querySelector('.popup__content'); //форма добавить место
-const savePlaceButton = popupPlace.querySelector("#popup__save");
 
 const placeNameInput = popupPlace.querySelector('#placeName'); //поле ввода названия места
 const placeLinkInput = popupPlace.querySelector('#placePhoto'); //поле ввода ссылки на фото
@@ -24,81 +22,93 @@ const image = popupFoto.querySelector('.popup__img');
 const description = popupFoto.querySelector('.popup__description');
 const closePlaceFotoButton = popupFoto.querySelector('.popup__close');
 
+function closePopup(popup) {
+  popup.classList.remove('popup_open');
+}
+
+function openPopup(popup) {
+  popup.classList.add('popup_open');
+}
+
+function openProfilePopup(event){
+  nameInput.value = profileTitle.textContent;
+  jobInput.value = profileKind.textContent;
+  openPopup(popup);
+}
 
 function formSubmitHandler(event){
     event.preventDefault();
     profileTitle.textContent = nameInput.value;
     profileKind.textContent = jobInput.value;
-    togglePopup();
+    closePopup(popup);
 }
 
 function formSubmitPlace(event){
   event.preventDefault();
-  //создаю элемент места
-  addPlace(placeNameInput.value,placeLinkInput.value);
-  togglePopupPlace();
+  let newPlace = createNewPlace(placeNameInput.value,placeLinkInput.value); // создаю элемент места
+  addPlace(newPlace); // помещаю новый элемент в разметку
+  closePopup(popupPlace);
 }
 
-function togglePopup(event){
-    if(!popup.classList.contains('popup_open')){
-        nameInput.value = profileTitle.textContent;
-        jobInput.value = profileKind.textContent;
-    }
-    popup.classList.toggle('popup_open');
-}
-
-function togglePopupPlace(event){
-  popupPlace.classList.toggle('popup_open');
-}
+ function togglePopupPlace(event){
+   popupPlace.classList.toggle('popup_open');
+ }
 
 function togglePopupLike(event){
-  event.stopPropagation();
   event.target.classList.toggle('attraction__like_b');
 }
 
-function togglePopupFoto(event){
-  if(!popupFoto.classList.contains('popup_open')){
-    descr = event.target.parentElement.querySelector('.attraction__name-attraction').innerText;
-    image.src = event.target.currentSrc;
-    image.alt = descr;
-    description.textContent = descr;
-  }
-  popupFoto.classList.toggle('popup_open');
+function openPopupFoto(name, link){
+    image.src = link;
+    image.alt = name;
+    description.textContent = name;
+    openPopup(popupFoto);
 }
 
-function deletePlace(event){
-  event.stopPropagation();
-  event.target.parentElement.remove();
-}
+ function deletePlace(event){
+   event.target.closest('.attraction').remove();
+ }
 
-function addPlace(name,link){
-  // клонируем содержимое
+ function createNewPlace(name,link){ // функция создает из шаблона новый элемент "Место" заполняет его
+  // клонируем содержимое шаблона
   const attraction = templatePlace.querySelector('.attraction').cloneNode(true);
-  attraction.querySelector('.attraction__image').src = link;
-  attraction.querySelector('.attraction__image').title = name;
-  attraction.querySelector('.attraction__image').alt = name;
 
+  // заполняем фото
+  const attractionImage = attraction.querySelector('.attraction__image');
+  attractionImage.src = link;
+  attractionImage.title = name;
+  attractionImage.alt = name;
+
+  // заполняем название
   attraction.querySelector('.attraction__name-attraction').textContent = name;
+
+  // вешаем обработчики на "кнопки"
   attraction.querySelector('.attraction__like').addEventListener("click",togglePopupLike);
-  attraction.querySelector('.attraction__delete').addEventListener("click",deletePlace);
-  attraction.addEventListener("click",togglePopupFoto);
+  attraction.querySelector('.attraction__delete').addEventListener("click", deletePlace);
+  attraction.querySelector('.attraction__image').addEventListener("click", () => openPopupFoto(name, link));
+
+  return attraction;
+}
+
+function addPlace(attraction){ // и помещает в разметку
+  // добавляем созданый элемент в разметку
   places.prepend(attraction);
 }
 
-showPopupButton.addEventListener("click",togglePopup);
-closePopupButton.addEventListener("click",togglePopup);
+showPopupButton.addEventListener("click", openProfilePopup);
 formElement.addEventListener("submit", formSubmitHandler);
+closePopupButton.addEventListener("click", () => closePopup(popup));
 
-buttonAddPlace.addEventListener("click",togglePopupPlace);
-closePlaceButton.addEventListener("click",togglePopupPlace);
+buttonAddPlace.addEventListener("click",() => openPopup(popupPlace));
 popupPlace.addEventListener("submit",formSubmitPlace);
+closePlaceButton.addEventListener("click", () => closePopup(popupPlace));
 
-closePlaceFotoButton.addEventListener("click",togglePopupFoto);
+closePlaceFotoButton.addEventListener("click",() => closePopup(popupFoto));
 
 const templatePlace = document.querySelector('#template_place').content;
 const places = document.querySelector('.places');
 
-
 initialCards.forEach((item) => {
-  addPlace(item.name,item.link)
+  let newPlace = createNewPlace(item.name,item.link); //создаем новое место
+  addPlace(newPlace); //помещаем новое место в разметку
 });
