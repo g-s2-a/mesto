@@ -48,8 +48,13 @@
     <form class="popup__content" name="popup__content">
       <button type="button" class="popup__close"></button>
       <h3 class="popup__head">Редактировать профиль</h3>
-      <input class="popup__edit" id="popupName" name="name">
-      <input class="popup__edit" id="popupProfession" name="profession">
+
+      <input class="popup__edit" id="popupName" name="name" minlength="2" maxlength="40" required>
+      <span  class="popup__edit-error popupName-error">Заполните поле</span>
+
+      <input class="popup__edit" id="popupProfession" name="profession" minlength="2" maxlength="200" required>
+      <span  class="popup__edit-error popupProfession-error">Заполните поле</span>
+
       <button type="submit" class="popup__save">Сохранить</button>
     </form>
   </div>
@@ -58,8 +63,13 @@
     <form class="popup__content" name="popup__content">
       <button type="button" class="popup__close"></button>
       <h3 class="popup__head">Новое место</h3>
-      <input class="popup__edit" id="placeName" name="placeName">
-      <input class="popup__edit" id="placePhoto" name="placePhoto">
+
+      <input class="popup__edit" id="placeName" name="placeName" minlength="2" maxlength="40" required>
+      <span  class="popup__edit-error placeName-error">Заполните поле</span>
+
+      <input class="popup__edit" id="placePhoto" name="placePhoto" type="url" required>
+      <span  class="popup__edit-error placePhoto-error">Заполните поле</span>
+
       <button type="submit" class="popup__save" id="popup__save">Сохранить</button>
     </form>
   </div>
@@ -74,6 +84,7 @@
 
   <script src="js/loading.js"></script>
   <script src="js/popup.js"></script>
+  <script src="js/validate.js"></script>
 
 </body>
 

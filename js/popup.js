@@ -24,10 +24,19 @@ const closePlaceFotoButton = popupFoto.querySelector('.popup__close');
 
 function closePopup(popup) {
   popup.classList.remove('popup_open');
+  document.removeEventListener("keydown", haftEscapeKey);
+}
+
+
+function haftEscapeKey(evt) {
+  if (evt.key === "Escape") {
+    closePopup(popup);
+  }
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_open');
+  document.addEventListener("keydown", haftEscapeKey);
 }
 
 function openProfilePopup(event){
@@ -95,15 +104,25 @@ function addPlace(attraction){ // и помещает в разметку
   places.prepend(attraction);
 }
 
+
+
 showPopupButton.addEventListener("click", openProfilePopup);
 formElement.addEventListener("submit", formSubmitHandler);
 closePopupButton.addEventListener("click", () => closePopup(popup));
+popup.addEventListener("click",function (event) {
+ if (event.path[0] == popup){
+   closePopup(popup)
+ }
+}
+);
 
 buttonAddPlace.addEventListener("click",() => openPopup(popupPlace));
 popupPlace.addEventListener("submit",formSubmitPlace);
 closePlaceButton.addEventListener("click", () => closePopup(popupPlace));
 
 closePlaceFotoButton.addEventListener("click",() => closePopup(popupFoto));
+
+
 
 const templatePlace = document.querySelector('#template_place').content;
 const places = document.querySelector('.places');
