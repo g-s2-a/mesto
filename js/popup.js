@@ -1,3 +1,5 @@
+
+
 const showPopupButton = document.querySelector(".profile__edit-button"); // кнопка редактирования профиля
 const popup = document.querySelector("#popup"); // блок редактирования профиля
 const closePopupButton = popup.querySelector(".popup__close"); //кнопка закрытия блока
@@ -22,21 +24,23 @@ const image = popupFoto.querySelector('.popup__img');
 const description = popupFoto.querySelector('.popup__description');
 const closePlaceFotoButton = popupFoto.querySelector('.popup__close');
 
+const popups = document.querySelectorAll(".popup");
+
 function closePopup(popup) {
   popup.classList.remove('popup_open');
   document.removeEventListener("keydown", haftEscapeKey);
 }
 
 
-function haftEscapeKey(evt) {
-  if (evt.key === "Escape") {
+function haftEscapeKey(key,popup) {
+  if (key === "Escape") {
     closePopup(popup);
   }
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_open');
-  document.addEventListener("keydown", haftEscapeKey);
+  document.addEventListener("keydown", (evt) => haftEscapeKey(evt.key, popup));
 }
 
 function openProfilePopup(event){
@@ -104,17 +108,20 @@ function addPlace(attraction){ // и помещает в разметку
   places.prepend(attraction);
 }
 
-
-
 showPopupButton.addEventListener("click", openProfilePopup);
 formElement.addEventListener("submit", formSubmitHandler);
 closePopupButton.addEventListener("click", () => closePopup(popup));
-popup.addEventListener("click",function (event) {
- if (event.path[0] == popup){
-   closePopup(popup)
- }
-}
-);
+
+popups.forEach((item) => {
+  item.addEventListener("click",function (event) {
+   if (event.path[0] == event.target){
+     closePopup(event.target)
+   }
+  }
+  );
+});
+
+
 
 buttonAddPlace.addEventListener("click",() => openPopup(popupPlace));
 popupPlace.addEventListener("submit",formSubmitPlace);
