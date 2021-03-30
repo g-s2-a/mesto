@@ -31,16 +31,15 @@ function closePopup(popup) {
   document.removeEventListener("keydown", haftEscapeKey);
 }
 
-
-function haftEscapeKey(key,popup) {
-  if (key === "Escape") {
-    closePopup(popup);
+function haftEscapeKey(event) {
+  if (event.key === "Escape") {
+    closePopup(document.querySelector('.popup_open'));
   }
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_open');
-  document.addEventListener("keydown", (evt) => haftEscapeKey(evt.key, popup));
+  document.addEventListener("keydown", haftEscapeKey);
 }
 
 function openProfilePopup(event){
@@ -58,14 +57,10 @@ function formSubmitHandler(event){
 
 function formSubmitPlace(event){
   event.preventDefault();
-  let newPlace = createNewPlace(placeNameInput.value,placeLinkInput.value); // создаю элемент места
+  const newPlace = createNewPlace(placeNameInput.value,placeLinkInput.value); // создаю элемент места
   addPlace(newPlace); // помещаю новый элемент в разметку
   closePopup(popupPlace);
 }
-
- function togglePopupPlace(event){
-   popupPlace.classList.toggle('popup_open');
- }
 
 function togglePopupLike(event){
   event.target.classList.toggle('attraction__like_b');
@@ -98,7 +93,7 @@ function openPopupFoto(name, link){
   // вешаем обработчики на "кнопки"
   attraction.querySelector('.attraction__like').addEventListener("click",togglePopupLike);
   attraction.querySelector('.attraction__delete').addEventListener("click", deletePlace);
-  attraction.querySelector('.attraction__image').addEventListener("click", () => openPopupFoto(name, link));
+  attractionImage.addEventListener("click", () => openPopupFoto(name, link));
 
   return attraction;
 }
@@ -114,7 +109,7 @@ closePopupButton.addEventListener("click", () => closePopup(popup));
 
 popups.forEach((item) => {
   item.addEventListener("click",function (event) {
-   if (event.path[0] == event.target){
+   if (event.currentTarget == event.target){
      closePopup(event.target)
    }
   }
@@ -135,6 +130,6 @@ const templatePlace = document.querySelector('#template_place').content;
 const places = document.querySelector('.places');
 
 initialCards.forEach((item) => {
-  let newPlace = createNewPlace(item.name,item.link); //создаем новое место
+  const newPlace = createNewPlace(item.name,item.link); //создаем новое место
   addPlace(newPlace); //помещаем новое место в разметку
 });
