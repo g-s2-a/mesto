@@ -1,4 +1,42 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+// объект настроек
+const settings_object = {
+  formSelector: '.popup__content',
+  inputSelector: '.popup__edit',
+  submitButtonSelector: '.popup__save',
+  inactiveButtonClass: 'popup__save_disabled',
+  inputErrorClass: 'popup__edit_type_error',
+  errorClass: 'popup__error_visible'
+}
 
 const showPopupButton = document.querySelector(".profile__edit-button"); // кнопка редактирования профиля
 const popup = document.querySelector("#popup"); // блок редактирования профиля
@@ -37,17 +75,20 @@ function haftEscapeKey(event) {
   }
 }
 
+// открывает любой попап
 function openPopup(popup) {
   popup.classList.add('popup_open');
   document.addEventListener("keydown", haftEscapeKey);
 }
 
+// открывает попап профиля
 function openProfilePopup(event){
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileKind.textContent;
   openPopup(popup);
 }
 
+// записывает значения профиля и закрывает попап
 function formSubmitHandler(event){
     event.preventDefault();
     profileTitle.textContent = nameInput.value;
@@ -55,47 +96,21 @@ function formSubmitHandler(event){
     closePopup(popup);
 }
 
+
+//создает и записывает новое место, закрывает попап
 function formSubmitPlace(event){
   event.preventDefault();
-  const newPlace = createNewPlace(placeNameInput.value,placeLinkInput.value); // создаю элемент места
-  addPlace(newPlace); // помещаю новый элемент в разметку
+  const newСard = new Card(placeNameInput.value, placeLinkInput.value,'#template_place').generateCard();
+  addPlace(newСard); //помещаем новое место в разметку
   closePopup(popupPlace);
 }
 
-function togglePopupLike(event){
-  event.target.classList.toggle('attraction__like_b');
-}
-
+//открывает попап с изображением места
 function openPopupFoto(name, link){
     image.src = link;
     image.alt = name;
     description.textContent = name;
     openPopup(popupFoto);
-}
-
- function deletePlace(event){
-   event.target.closest('.attraction').remove();
- }
-
- function createNewPlace(name,link){ // функция создает из шаблона новый элемент "Место" заполняет его
-  // клонируем содержимое шаблона
-  const attraction = templatePlace.querySelector('.attraction').cloneNode(true);
-
-  // заполняем фото
-  const attractionImage = attraction.querySelector('.attraction__image');
-  attractionImage.src = link;
-  attractionImage.title = name;
-  attractionImage.alt = name;
-
-  // заполняем название
-  attraction.querySelector('.attraction__name-attraction').textContent = name;
-
-  // вешаем обработчики на "кнопки"
-  attraction.querySelector('.attraction__like').addEventListener("click",togglePopupLike);
-  attraction.querySelector('.attraction__delete').addEventListener("click", deletePlace);
-  attractionImage.addEventListener("click", () => openPopupFoto(name, link));
-
-  return attraction;
 }
 
 function addPlace(attraction){ // и помещает в разметку
@@ -125,11 +140,30 @@ closePlaceButton.addEventListener("click", () => closePopup(popupPlace));
 closePlaceFotoButton.addEventListener("click",() => closePopup(popupFoto));
 
 
+//шаблон места
+//const templatePlace = document.querySelector('#template_place').content;
 
-const templatePlace = document.querySelector('#template_place').content;
 const places = document.querySelector('.places');
 
 initialCards.forEach((item) => {
-  const newPlace = createNewPlace(item.name,item.link); //создаем новое место
-  addPlace(newPlace); //помещаем новое место в разметку
+  const newСard = new Card(item.name, item.link,'#template_place').generateCard();
+  addPlace(newСard); //помещаем новое место в разметку
 });
+
+
+
+
+
+function enableValidation(settings_object) {
+  const forms = Array.from(
+    document.querySelectorAll("form")
+  );
+
+  forms.forEach((form) => {
+    const enableValidation = new FormValidator(settings_object,form);
+    enableValidation.enableValidation();
+  });
+}
+
+
+enableValidation(settings_object);
