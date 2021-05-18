@@ -1,6 +1,6 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
-import { openPopup, closePopup } from './Popup.js';
+import { Popup } from './Popup.js';
 
 function validationForm(form){
     const enableValidation = new FormValidator(settingsObject,form);
@@ -19,7 +19,7 @@ function enableValidation() {//включить валидацию
 function openProfilePopup(event){
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileKind.textContent;
-  openPopup(popup);
+  new Popup(popup).openPopup();
 
   //валидация после открытия попапа
   validationForm(formPopapProfile);
@@ -29,7 +29,7 @@ function formSubmitHandler(event){// записывает значения пр�
     event.preventDefault();
     profileTitle.textContent = nameInput.value;
     profileKind.textContent = jobInput.value;
-    closePopup(popup);
+    new Popup(popup).closePopup();
 }
 
 function clearingPopup(popup){// очищает попап
@@ -48,7 +48,7 @@ function formSubmitPlace(event){ //создает и записывает нов
   event.preventDefault();
   createsСard(placeNameInput.value,placeLinkInput.value,'#template_place');
   clearingPopup(popupPlace); //очищает поля ввода попап
-  closePopup(popupPlace);
+  new Popup(popupPlace).closePopup();
 }
 
 function addPlace(attraction){ // и помещает в разметку
@@ -58,13 +58,13 @@ function addPlace(attraction){ // и помещает в разметку
 
 showPopupButton.addEventListener("click", openProfilePopup);
 formPopapProfile.addEventListener("submit", formSubmitHandler);
-buttonAddPlace.addEventListener("click",() => openPopup(popupPlace));
+buttonAddPlace.addEventListener("click",() => new Popup(popupPlace).openPopup());
 popupPlace.addEventListener("submit",formSubmitPlace);
 
 popups.forEach((cardFormModalWindow) => {
   cardFormModalWindow.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-      closePopup(cardFormModalWindow);
+      new Popup(cardFormModalWindow).closePopup();
     }
   });
 });

@@ -1,11 +1,12 @@
 // Card — модуль
-import { openPopup } from './Popup.js';
+import { PopupFoto } from './Popup.js';
 
-export class Card { //класс Card создаёт карточку с текстом и ссылкой на изображение
+export class Card { //класс Card создаёт карточку с текстом и ссылкой на изображение,
   constructor(text, image, selector) {
       this._text = text;
       this._image = image;
       this._selector = selector;
+
   }
 
   _getTemplate() { //задача — вернуть разметку карточки через return
@@ -26,18 +27,15 @@ export class Card { //класс Card создаёт карточку с тек�
   }
 
   //открывает попап карточки
-  _openPopupFoto(name, link){
-    image.src = link;
-    image.alt = name;
-    description.textContent = name;
-    openPopup(popupFoto);
+  _openPopupFoto(){
+    new PopupFoto(this._text,this._image).openPopup();
   }
 
   //установить слушатели событий
   _setEventListeners() {
     this._element.querySelector('.attraction__like').addEventListener("click",() => this._togglePopupLike());
     this._element.querySelector('.attraction__delete').addEventListener("click",() => this._deletePlace());
-    this._element.querySelector('.attraction__image').addEventListener("click", () => this._openPopupFoto(this._text, this._image));
+    this._element.querySelector('.attraction__image').addEventListener("click", () => this._openPopupFoto());
   }
 
   generateCard(){ //наполняю шаблон данными

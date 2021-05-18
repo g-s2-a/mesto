@@ -54,11 +54,6 @@ const popupPlace = document.querySelector('#popupPlace'); //блок добав�
 const placeNameInput = popupPlace.querySelector('#placeName'); //поле ввода названия места
 const placeLinkInput = popupPlace.querySelector('#placePhoto'); //поле ввода ссылки на фото
 
-// popup фото
-const popupFoto = document.querySelector('#popupFoto');
-const image = popupFoto.querySelector('.popup__img');
-const description = popupFoto.querySelector('.popup__description');
-
 // все попапы
 const popups = document.querySelectorAll(".popup");
 
