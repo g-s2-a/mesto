@@ -49,10 +49,10 @@
       <button type="button" class="popup__close"></button>
       <h3 class="popup__head">Редактировать профиль</h3>
 
-      <input class="popup__edit" id="popupName" name="name" minlength="2" maxlength="40" required>
+      <input class="popup__edit" id="popupName" name="name" minlength="2" maxlength="40" required placeholder ="Имя">
       <span  class="popup__edit-error popupName-error">Заполните поле</span>
 
-      <input class="popup__edit" id="popupProfession" name="profession" minlength="2" maxlength="200" required>
+      <input class="popup__edit" id="popupProfession" name="profession" minlength="2" maxlength="200" required placeholder ="Вид деятельности">
       <span  class="popup__edit-error popupProfession-error">Заполните поле</span>
 
       <button type="submit" class="popup__save">Сохранить</button>
@@ -64,10 +64,10 @@
       <button type="button" class="popup__close"></button>
       <h3 class="popup__head">Новое место</h3>
 
-      <input class="popup__edit" id="placeName" name="placeName" minlength="2" maxlength="40" required>
+      <input class="popup__edit" id="placeName" name="placeName" minlength="2" maxlength="40" required placeholder ="Название места">
       <span  class="popup__edit-error placeName-error">Заполните поле</span>
 
-      <input class="popup__edit" id="placePhoto" name="placePhoto" type="url" required>
+      <input class="popup__edit" id="placePhoto" name="placePhoto" type="url" required placeholder ="Ссылка на изображение">
       <span  class="popup__edit-error placePhoto-error">Заполните поле</span>
 
       <button type="submit" class="popup__save" id="popup__save">Сохранить</button>
@@ -82,9 +82,9 @@
     </form>
   </div>
 
+  <script src="js/constants.js"></script>
   <script type="module" src="js/index.js"></script>
-  <script type="module" src="js/Card.js"></script>
-  <script type="module" src="js/FormValidator.js"></script>
+
 
 </body>
 

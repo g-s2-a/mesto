@@ -67,12 +67,18 @@ export class FormValidator{
     //кнопка "Записать"
     const buttonElement = this._formElement.querySelector(this._settings_object.submitButtonSelector);
 
-    inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
+    inputList.forEach((inputElement) => { //обхожу инпуты проверяю текущую валидность и вешаю обработчики на изменение
+      // проверяю инпут
+      this._checkInputValidity(this._formElement, inputElement);
+
+      inputElement.addEventListener("input", () => { //обработчик -  при изменении инпута, будет проверка влидации на нем и включение/выключение кнопки
         this._checkInputValidity(this._formElement, inputElement);
         this._toggleButtonState(inputList, buttonElement);
       });
+
     });
+
+    this._toggleButtonState(inputList, buttonElement); //включение/выключение кнопки
 
     this._handlers();
   }
