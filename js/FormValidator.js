@@ -69,7 +69,9 @@ export class FormValidator{
 
     inputList.forEach((inputElement) => { //обхожу инпуты проверяю текущую валидность и вешаю обработчики на изменение
       // проверяю инпут
-      this._checkInputValidity(this._formElement, inputElement);
+      if (inputElement.value.trim()){
+        this._checkInputValidity(this._formElement, inputElement);
+      }
 
       inputElement.addEventListener("input", () => { //обработчик -  при изменении инпута, будет проверка влидации на нем и включение/выключение кнопки
         this._checkInputValidity(this._formElement, inputElement);

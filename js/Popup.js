@@ -8,7 +8,7 @@ export class Popup{// открывает или закрывает попап
   document.addEventListener("keydown", this._haftEscapeKey);
   }
 
-  closePopup(popup) {
+  closePopup() {
   this.popup.classList.remove('popup_open');
   document.removeEventListener("keydown", this._haftEscapeKey);
   }
