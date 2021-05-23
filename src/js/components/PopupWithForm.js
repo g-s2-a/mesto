@@ -4,9 +4,10 @@ export default class PopupWithForm extends Popup { // инструмент ра�
 
 
 
-  constructor(popupSelector,sabmitHandler){
+  constructor(popupSelector,submitHandler){
     super(popupSelector);                // popupSelector - селектор попапа содержащего форму
-    this._sabmitHandler = sabmitHandler; // ссылка на функцию обработки нажатия кнопки на форме
+    this._submitHandler = submitHandler; // ссылка на функцию обработки нажатия кнопки на форме
+
   }
 
   //собирает данные всех полей формы
@@ -20,14 +21,13 @@ export default class PopupWithForm extends Popup { // инструмент ра�
 
   }
 
-
-
   // установка слушателей событий
   setEventListeners(){
     super.setEventListeners();
+
     this.submit = (evt) => {
       evt.preventDefault();
-      this._sabmitHandler(this._getInputValues());
+      this._submitHandler(this._getInputValues());
       this.close();
     }
 
@@ -38,9 +38,7 @@ export default class PopupWithForm extends Popup { // инструмент ра�
 
   // сбрасывает и закрывает форму
   close() {
-    this.form.removeEventListener('submit',this.submit)
     this.form.reset();
-    
     super.close();
   }
 

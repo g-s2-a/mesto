@@ -1,11 +1,9 @@
 // Card — модуль
 
-import PopupFoto from '../components/Popup.js';
-
 export default class Card { //класс Card создаёт карточку с текстом и ссылкой на изображение,
-  constructor(text, image, selector, handleCardClick) {
-      this._text = text;
-      this._image = image;
+  constructor({name, link}, selector, handleCardClick) {
+      this._text = name;
+      this._image = link;
       this._selector = selector;
       this._handleCardClick = handleCardClick;
   }
@@ -29,21 +27,28 @@ export default class Card { //класс Card создаёт карточку с
 
   //установить слушатели событий
   _setEventListeners() {
-    this._element.querySelector('.attraction__like').addEventListener("click",() => this._togglePopupLike());
-    this._element.querySelector('.attraction__delete').addEventListener("click",() => this._deletePlace());
-    this._element.querySelector('.attraction__image').addEventListener("click", () => this._handleCardClick(this._text,this._image));
+    this._likeButton.addEventListener("click",() => this._togglePopupLike());
+    this._deleteButton.addEventListener("click",() => this._deletePlace());
+    this._imageElement.addEventListener("click", () => this._handleCardClick(this._text,this._image));
   }
 
-  generateCard(){ //наполняю шаблон данными
+  //создание карточки
+  generateCard(){
+
     this._element = this._getTemplate();
-    this._setEventListeners();
+    this._titleElement = this._element.querySelector('.attraction__name-attraction');
+    this._imageElement = this._element.querySelector('.attraction__image');
+    this._likeButton = this._element.querySelector('.attraction__like');
+    this._deleteButton = this._element.querySelector('.attraction__delete');
 
-    this._element.querySelector('.attraction__name-attraction').textContent = this._text;
+    this._setEventListeners(); //установка обработчиков событий
 
-    const attractionImage = this._element.querySelector('.attraction__image');
-    attractionImage.src = this._image;
-    attractionImage.title = this._text;
-    attractionImage.alt = this._text;
+    //-------------
+    this._titleElement.textContent = this._text;
+
+    this._imageElement.src = this._image;
+    this._imageElement.title = this._text;
+    this._imageElement.alt = this._text;
 
     return this._element;
   }

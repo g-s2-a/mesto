@@ -2,80 +2,89 @@ export default class FormValidator{
   constructor(settingsObject, form){
     this._settingsObject = settingsObject;
     this._formElement = form;
-    this._error_empty_field = 'Поле не заполнено';
+    this._errorEmptyField = 'Поле не заполнено';
+    //кнопка "Записать"
+    this._buttonElement = this._formElement.querySelector(this._settingsObject.submitButtonSelector);
+    //массив всех полей ввода
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._settingsObject.inputSelector));
+
   }
 
   //проверяют валидность поля
   //есть ли не валидные элементы в списке
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
-      return !inputElement.validity.valid; // если найден хотябы один невалидный элемент метод вернет true
+  _hasInvalidInput() {
+    return this._inputList.some((inputEl) => {
+      return !inputEl.validity.valid; // если найден хотябы один невалидный элемент метод вернет true
     });
   }
 
   //изменяют состояние кнопки сабмита
-  _toggleButtonState(inputList, buttonElement) {
-    if (this._hasInvalidInput(inputList)) { // если в списке есть невалидные элементы
-      buttonElement.setAttribute("disabled", true); // выключаю кнопку
-      buttonElement.classList.add(this._settingsObject.inactiveButtonClass); // изменяю вид кнопки
+  _toggleButtonState() {
+    if (this._hasInvalidInput(this._inputList)) { // если в списке есть невалидные элементы
+      this._buttonElement.setAttribute("disabled", true); // выключаю кнопку
+      this._buttonElement.classList.add(this._settingsObject.inactiveButtonClass); // изменяю вид кнопки
     } else {                                // все элементы списка валидные
-      buttonElement.removeAttribute("disabled"); // убираю выключение
-      buttonElement.classList.remove(this._settingsObject.inactiveButtonClass); // изменяю вид кнопки
+      this._buttonElement.removeAttribute("disabled"); // убираю выключение
+      this._buttonElement.classList.remove(this._settingsObject.inactiveButtonClass); // изменяю вид кнопки
     }
   }
 
-
   //скрыть ошибку
-  _hideInputError(formElement, inputElement) {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  _hideInputError(inputElement) {
+    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     errorElement.classList.remove(this._settingsObject.errorClass);
     inputElement.classList.remove(this._settingsObject.inputErrorClass);
   }
 
   //показать ошибку
-  _showInputError(formElement, inputElement) {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  _showInputError(inputElement) {
+    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     errorElement.classList.add(this._settingsObject.errorClass);
     inputElement.classList.add(this._settingsObject.inputErrorClass);
 
     if (inputElement.value.length !== 0) {
       errorElement.textContent = inputElement.validationMessage;
     } else {
-      errorElement.textContent = this._error_empty_field;
+      errorElement.textContent = this._errorEmptyField;
     }
   }
 
-  _checkInputValidity(formElement, inputElement) { // проверка правельности вввода
+  // проверка правельности вввода
+  _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
-      this._showInputError(formElement, inputElement); //показать ошибку
+      this._showInputError(inputElement); //показать ошибку
     } else {
-      this._hideInputError(formElement, inputElement); //скрыть ошибку
+      this._hideInputError(inputElement); //скрыть ошибку
     }
   }
 
   //включает валидацию формы
   enableValidation(){
-    //массив всех полей ввода
-    const inputList = Array.from(this._formElement.querySelectorAll(this._settingsObject.inputSelector));
-    //кнопка "Записать"
-    const buttonElement = this._formElement.querySelector(this._settingsObject.submitButtonSelector);
+    //обхожу инпуты проверяю текущую валидность и вешаю обработчики на изменение
+    this._inputList.forEach((inputElement) => {
 
-    inputList.forEach((inputElement) => { //обхожу инпуты проверяю текущую валидность и вешаю обработчики на изменение
       // проверяю инпут
-      if (inputElement.value.trim()){
-        this._checkInputValidity(this._formElement, inputElement);
+      if (inputElement.value.trim()){ //если заполнен
+        this._checkInputValidity(inputElement);
       }
 
-      inputElement.addEventListener("input", () => { //обработчик -  при изменении инпута, будет проверка влидации на нем и включение/выключение кнопки
-        this._checkInputValidity(this._formElement, inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+      //обработчик -  при изменении инпута, будет проверка влидации на нем и включение/выключение кнопки
+      inputElement.addEventListener("input", () => {
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState(this._inputList, this._buttonElement);
       });
 
     });
 
-    if (inputList.length > 0){
-      this._toggleButtonState(inputList, buttonElement); //включение/выключение кнопки
+    if (this._inputList.length > 0){
+      this._toggleButtonState(); //включение/выключение кнопки
     }
+  }
+
+  clearErrors(){
+    this._inputList.forEach((inputElement)=>{
+      this._hideInputError(inputElement);
+    });
   }
 
 }
