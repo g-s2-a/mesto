@@ -4,24 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Mesto Russia</title>
 </head>
 
 <body>
   <div class="page">
     <header class="header">
-      <img class="header__logo" alt="Логотип Mesto Russia" src="./images/logo.svg">
+      <img class="header__logo" alt="Логотип Mesto Russia" src="<%=require('./images/logo.svg')%>">
     </header>
 
     <main class="content">
       <section class="profile">
-        <img class="profile__image" title="Жак-Ив Кусто" src="./images/image.png" alt="Аватар">
+        <img class="profile__image" title="Жак-Ив Кусто" src="<%=require('./images/image.png')%>" alt="Аватар">
         <div class="profile__edit">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button type="button" class="profile__edit-button"></button>
         </div>
-        <p class="profile__kind-of-activity">Исследователь океана</p>
+        <p class="profile__kind-of-activity">Исследователь океана!</p>
         <button type="button" class="profile__add-button"></button>
       </section>
 
@@ -49,10 +49,10 @@
       <button type="button" class="popup__close"></button>
       <h3 class="popup__head">Редактировать профиль</h3>
 
-      <input class="popup__edit" id="popupName" name="name" minlength="2" maxlength="40" required placeholder ="Имя">
+      <input class="popup__edit" id="popupName" name="popupName" minlength="2" maxlength="40" required placeholder ="Имя">
       <span  class="popup__edit-error popupName-error">Заполните поле</span>
 
-      <input class="popup__edit" id="popupProfession" name="profession" minlength="2" maxlength="200" required placeholder ="Вид деятельности">
+      <input class="popup__edit" id="popupProfession" name="popupProfession" minlength="2" maxlength="200" required placeholder ="Вид деятельности">
       <span  class="popup__edit-error popupProfession-error">Заполните поле</span>
 
       <button type="submit" class="popup__save">Сохранить</button>
@@ -64,10 +64,10 @@
       <button type="button" class="popup__close"></button>
       <h3 class="popup__head">Новое место</h3>
 
-      <input class="popup__edit" id="placeName" name="placeName" minlength="2" maxlength="40" required placeholder ="Название места">
+      <input class="popup__edit" id="placeName" name="name" minlength="2" maxlength="40" required placeholder ="Название места">
       <span  class="popup__edit-error placeName-error">Заполните поле</span>
 
-      <input class="popup__edit" id="placePhoto" name="placePhoto" type="url" required placeholder ="Ссылка на изображение">
+      <input class="popup__edit" id="placePhoto" name="link" type="url" required placeholder ="Ссылка на изображение">
       <span  class="popup__edit-error placePhoto-error">Заполните поле</span>
 
       <button type="submit" class="popup__save" id="popup__save">Сохранить</button>
@@ -82,8 +82,8 @@
     </form>
   </div>
 
-  <script src="js/constants.js"></script>
-  <script type="module" src="js/index.js"></script>
+
+
 
 
 </body>

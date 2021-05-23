@@ -1,4 +1,4 @@
-export class FormValidator{
+export default class FormValidator{
   constructor(settingsObject, form){
     this._settingsObject = settingsObject;
     this._formElement = form;
@@ -22,13 +22,6 @@ export class FormValidator{
       buttonElement.removeAttribute("disabled"); // убираю выключение
       buttonElement.classList.remove(this._settingsObject.inactiveButtonClass); // изменяю вид кнопки
     }
-  }
-
-  //устанавливаю все обработчики
-  _handlers(){
-    this._formElement.addEventListener("submit", (evt) => { //отменяю событие по умолчанию
-      evt.preventDefault();
-    });
   }
 
 
@@ -83,9 +76,6 @@ export class FormValidator{
     if (inputList.length > 0){
       this._toggleButtonState(inputList, buttonElement); //включение/выключение кнопки
     }
-
-
-    this._handlers();
   }
 
 }
