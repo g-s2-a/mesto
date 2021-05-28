@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Mesto Russia</title>
 </head>
@@ -12,16 +13,18 @@
   <div class="page">
     <header class="header">
       <img class="header__logo" alt="Логотип Mesto Russia" src="<%=require('./images/logo.svg')%>">
+      <!-- <img class="header__logo" alt="Логотип Mesto Russia" src="./images/logo.svg">-->
     </header>
 
     <main class="content">
       <section class="profile">
-        <img class="profile__image" title="Жак-Ив Кусто" src="<%=require('./images/image.png')%>" alt="Аватар">
+         <img class="profile__image" title="Жак-Ив Кусто" src="" alt="Аватар"> <!-- <%=require('./images/image.png')%> -->
+         <button type="button" class="profile__edit-avatar-button"></button>
         <div class="profile__edit">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <h1 class="profile__title"></h1>
           <button type="button" class="profile__edit-button"></button>
         </div>
-        <p class="profile__kind-of-activity">Исследователь океана!</p>
+        <p class="profile__kind-of-activity"></p>
         <button type="button" class="profile__add-button"></button>
       </section>
 
@@ -30,9 +33,10 @@
           <article class="attraction">
             <img class="attraction__image" title="Карачаевск" src="./images/kirill-pershin-1088404-unsplash.jpg"
               alt="Карачаевск">
-            <button class="attraction__delete" type="button"></button>
+            <button class="attraction__delete attraction__delete_hidden" type="button"></button>
             <h2 class="attraction__name-attraction">Карачаевск</h2>
             <button type="button" class="attraction__like"></button>
+            <p class="attraction__number-likes">0</p>
           </article>
         </template>
       </section>
@@ -60,8 +64,8 @@
   </div>
 
   <div class="popup" id="popupPlace">
-    <form class="popup__content" name="popup__content">
-      <button type="button" class="popup__close"></button>
+    <form class="popup__content" name="popup__content" data-id = "">
+      <button type="button " class="popup__close"></button>
       <h3 class="popup__head">Новое место</h3>
 
       <input class="popup__edit" id="placeName" name="name" minlength="2" maxlength="40" required placeholder ="Название места">
@@ -82,9 +86,26 @@
     </form>
   </div>
 
+  <div class="popup popup_delete" id="popupDelete">
+    <form class="popup__content" name="popup__content">
+      <button type="button" class="popup__close"></button>
+      <p class="popup__head popup__head_delete">Вы уверены?</p>
+      <input class="popup__id-delete" id="prodId" name="cardId" type="hidden" value="">
+      <button type="submit" class="popup__save popup__save_delete" id="popup__delete">Да</button>
+    </form>
+  </div>
 
+  <div class="popup popup_edit-avatar" id="popupEditAvatar">
+    <form class="popup__content" name="popup__content">
+      <button type="button" class="popup__close"></button>
+      <p class="popup__head popup__head_avatar">Обновить аватар</p>
+      <input class="popup__edit" id="placeName" name="nameImg" type="url" required placeholder ="Ссылка на изображение">
+      <span  class="popup__edit-error placeName-error">Заполните поле</span>
+      <button type="submit" class="popup__save" id="popup__saveAvatar">Сохранить</button>
+    </form>
+  </div>
 
-
+  <!-- <script type="module" src="./pages/index.js"></script> -->
 
 </body>
 

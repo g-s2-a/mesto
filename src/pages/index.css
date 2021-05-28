@@ -7,6 +7,7 @@
 @import url(../blocks/header/__logo/header__logo.css);
 
 @import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__edit-avatar-button/profile__edit-avatar-button.css);
 @import url(../blocks/profile/__edit/profile__edit.css);
 @import url(../blocks/profile/__add-button/__add-button.css);
 @import url(../blocks/profile/__edit-button/__edit-button.css);
@@ -20,24 +21,36 @@
 @import url(../blocks/attraction/__name-attraction/attraction__name-attraction.css);
 @import url(../blocks/attraction/__image/attraction__image.css);
 @import url(../blocks/attraction/__like/attraction__like.css);
+@import url(../blocks/attraction/__like/_b/attraction__like_b.css);
+@import url(../blocks/attraction/__delete/attraction__delete.css);
+@import url(../blocks/attraction/__delete/_hidden/attraction__delete_hidden.css);
+@import url(../blocks/attraction/__number-likes/attraction__number-likes.css);
+
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__author/footer__author.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__content/popup__content.css);
+@import url(../blocks/popup/__content/__content-edit-avatar/popup__content-edit-avatar.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__edit/popup__edit.css);
 @import url(../blocks/popup/__edit/_type/popup__edit_type_error.css);
 @import url(../blocks/popup/__edit/popup__edit-error.css);
+
 @import url(../blocks/popup/__save/popup__save.css);
 @import url(../blocks/popup/__save/_disabled/popup__save_disabled.css);
+
 @import url(../blocks/popup/__head/popup__head.css);
+@import url(../blocks/popup/__head/_delete/popup__head_delete.css);
+@import url(../blocks/popup/__head/_avatar/popup__head_avatar.css);
+
 @import url(../blocks/popup/_open/popup_open.css);
 @import url(../blocks/popup/__content-foto/popup__content-foto.css);
+@import url(../blocks/popup/__content-delete/popup__content-delete.css);
+
 @import url(../blocks/popup/__img/popup__img.css);
 @import url(../blocks/popup/__description/popup__description.css);
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
 
-@import url(../blocks/attraction/__like/_b/attraction__like_b.css);
-@import url(../blocks/attraction/__delete/attraction__delete.css);
+

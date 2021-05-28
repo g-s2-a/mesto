@@ -1,4 +1,36 @@
 .profile__image {
-    grid-area: i;
-    border-radius: 50% 50% 50% 50%;
+  border-radius: 50% 50% 50% 50%;
+  grid-area: i;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+
+
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: opacity .5s;
+}
+.profile__image:hover:before {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.profile__image:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #2a2c2f;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
 }

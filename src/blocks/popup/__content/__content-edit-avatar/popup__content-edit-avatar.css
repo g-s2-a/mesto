@@ -1,0 +1,9 @@
+.popup__content-edit-avatar{
+  max-width: 430px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 34px 37px 37px 37px;
+}

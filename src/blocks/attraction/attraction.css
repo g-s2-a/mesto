@@ -1,14 +1,15 @@
 .attraction {
-    list-style-type: none;
-    background: white;
-    display: grid;
-    grid:
-        "i i"
-        "n l";
-    width: 100%;
-    border-radius: 10px;
-    grid-template-columns: auto 52px;
-    grid-template-rows: min-content 79px;
-    align-items: center;
-    position: relative;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  display: grid;
+  grid:
+      "i i"
+      "n l"
+      "n k";
+  grid-template-columns: auto 41px;
+  grid-template-rows: min-content 40px 40px;
+  list-style-type: none;
+  position: relative;
+  width: 100%;
 }

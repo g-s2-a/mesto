@@ -1,0 +1,46 @@
+.profile__edit-avatar-button {
+  grid-area: i;
+  height: 121px;
+  width: 121px;
+  border-radius: 50% 50% 50% 50%;
+  z-index: 1;
+  border: 0;
+  padding: 0;
+  /* background-image: url(./images/vector-edit.svg); */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity .3s;
+  background: none;
+}
+
+.profile__edit-avatar-button:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1px;
+  right: 0;
+  background-color: #000000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  height: 121px;
+  width: 122px;
+  border-radius: 50% 50% 50% 50%;
+}
+
+.profile__edit-avatar-button:hover:before {
+  opacity: 0.8;
+  background-image: url(../../../images/vector-edit-p.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}

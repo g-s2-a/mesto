@@ -5,6 +5,7 @@
     border: 0;
     background-image: url(../../../images/vector-love.svg);
     grid-area: l;
+    align-self: end;
 }
 
 .attraction__like:hover {

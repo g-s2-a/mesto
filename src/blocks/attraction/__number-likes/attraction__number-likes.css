@@ -1,0 +1,7 @@
+.attraction__number-likes {
+    grid-area: k;
+    margin: 0;
+    align-self: baseline;
+    padding-left: 6px;
+    padding-top: 2px;
+}

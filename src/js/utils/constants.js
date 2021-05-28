@@ -38,17 +38,24 @@ export const settingsObject = {
 //элемнты профиля
 export const popupProfileSelector = "#popup"; // селектор попап профиля
 export const popupFotoSelector = ".popup_foto"; // селектор попап фото
+
 export const buttonShowPopup = document.querySelector(".profile__edit-button"); // кнопка редактирования профиля
 
 export const formSelector = ".popup__content"; //селектор форм попап
 export const nameInput = document.querySelector("#popupName"); // поле ввода имени
 export const jobInput = document.querySelector("#popupProfession"); //поле ввода професии
 
+export const profileFotoSelector = ".profile__image"; // текущее фото профиля
 export const profileUserSelector = ".profile__title"; // текущий заголовок профиля
 export const profileInfoSelector = ".profile__kind-of-activity"; //текущая профессия профиля
 
-// блок мест
-//export const places = document.querySelector('.places');
+//элементы попап delete
+export const popupDeleteSelector = ".popup_delete"; // селектор попап фото
+export const idCardInput = document.querySelector("#prodId"); // поле ввода имени;
+
+//элементы попап изменениея автара
+export const buttonEditAvatarPopup = document.querySelector(".profile__edit-avatar-button");
+export const popupEditAvatarSelector = ".popup_edit-avatar";
 
 // popup Добавить место
 export const popupPlaceSelector = '#popupPlace'; //селектор блока добавления формы места
