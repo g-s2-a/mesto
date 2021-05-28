@@ -6,13 +6,15 @@ export default class PopupWithForm extends Popup { // инструмент ра�
     super(popupSelector);                // popupSelector - селектор попапа содержащего форму
     this._submitHandler = submitHandler; // ссылка на функцию обработки нажатия кнопки на форме
 
+    this.form = this.popup.querySelector('form');
+    this.inputs = [...this.form.querySelectorAll("input")];
+
   }
 
   //собирает данные всех полей формы
   _getInputValues(){
     const values = {};
-    const inputs = [...this.form.querySelectorAll("input")]
-    inputs.forEach(input => {
+    this.inputs.forEach(input => {
       values[input.name] = input.value;
     })
     return values;
@@ -26,8 +28,6 @@ export default class PopupWithForm extends Popup { // инструмент ра�
       evt.preventDefault();
       this._submitHandler(this._getInputValues(),evt);
     }
-
-    this.form = this.popup.querySelector('form');
     this.form.addEventListener('submit',this.submit);
   }
 

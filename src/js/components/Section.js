@@ -17,6 +17,7 @@ export default class Section{
           item.owner._id != '803d279a818b38b0a49721fc' &&
           item.owner._id != 'cfdf23724be236f72daacf8a' &&
           item.owner._id != 'deaff4d1f6c98dcd1a53f1e8' &&
+          item.owner._id != 'ac4481dc04955bbba2f3f0bd' &&
           item.owner._id != '13ecf220d5e9b5d717ed39ec'){ // фильтр нежелательного для детей контента
         this._renderer(item);
         //console.log(`${item.owner._id}-${item.owner.name}`);

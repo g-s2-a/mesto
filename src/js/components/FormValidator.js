@@ -7,7 +7,6 @@ export default class FormValidator{
     this._buttonElement = this._formElement.querySelector(this._settingsObject.submitButtonSelector);
     //массив всех полей ввода
     this._inputList = Array.from(this._formElement.querySelectorAll(this._settingsObject.inputSelector));
-
   }
 
   //проверяют валидность поля
@@ -58,34 +57,37 @@ export default class FormValidator{
     }
   }
 
-  //включает валидацию формы
-  enableValidation(){
-    //обхожу инпуты проверяю текущую валидность и вешаю обработчики на изменение
+  //установка обработчиков - при изменении инпута, будет проверка валидации на нем и включение/выключение кнопки
+  installingEventHandlers(){
     this._inputList.forEach((inputElement) => {
-
-      // проверяю инпут
-      if (inputElement.value.trim()){ //если заполнен
-        this._checkInputValidity(inputElement);
-      }
-
-      //обработчик -  при изменении инпута, будет проверка влидации на нем и включение/выключение кнопки
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState(this._inputList, this._buttonElement);
       });
-
     });
-
-    if (this._inputList.length > 0){
-      this._toggleButtonState(); //включение/выключение кнопки
-    }
   }
 
-  clearErrors(){
+  _clearErrors(){
     this._inputList.forEach((inputElement)=>{
       this._hideInputError(inputElement);
     });
   }
+
+  //выполняет валидацию формы при открытии
+  enableValidation(){
+    //обхожу инпуты проверяю текущую валидность
+    this._inputList.forEach((inputElement) => {
+      if (inputElement.value.trim()){ //если инпут заполнен проверяю
+        this._checkInputValidity(inputElement);
+      }
+    });
+    if (this._inputList.length > 0){
+      this._toggleButtonState(); //включение/выключение кнопки
+    }
+    this._clearErrors() // включение ошибок (при открытии формы скрываем все ошибки)
+  }
+
+
 
 }
 

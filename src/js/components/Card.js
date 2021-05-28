@@ -24,14 +24,25 @@ export default class Card { //класс Card создаёт карточку с
 
   //устанавливает или снимает лайк
   _togglePopupLike(){
-    this._likeButton.classList.contains('attraction__like_b') ? this._removeLike(this._id) : this._saveLike(this._id)
+    this._likeButton.classList.contains('attraction__like_b') ? this._removeLike(this._id,this) : this._saveLike(this._id,this)
     //this._likeButton.classList.toggle('attraction__like_b');
   }
 
-/*   //удаляет место
-  deletePlace(){
-    this._element.remove();
-  } */
+  _setSignLike() { // выделение / снятие выделния для текущего лайка
+    if (this._likes.find(el => el._id == this._idUser) != undefined) {
+      this._likeButton.classList.add('attraction__like_b')
+    } else {
+      this._likeButton.classList.remove('attraction__like_b')
+    };
+  }
+
+  updateLikes(likes){
+    this._likes = likes;
+
+    this._setSignLike();
+    this._quantityLikes.textContent = this._likes.length;
+    card.querySelector('.attraction__like').classList.remove('attraction__like_b')
+  }
 
   //установить слушатели событий
   _setEventListeners() {
@@ -66,8 +77,7 @@ export default class Card { //класс Card создаёт карточку с
       this._deleteButton.classList.remove('attraction__delete_hidden');
     }
 
-    // если есть свои лайки то показываю
-    this._likes.find(el => el._id == this._idUser) != undefined ? this._likeButton.classList.add('attraction__like_b') : {};
+    this._setSignLike()
     this._quantityLikes.textContent = this._likes.length;
 
     return this._element;

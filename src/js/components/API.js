@@ -6,6 +6,15 @@ export class Api {
     this.token = token
   }
 
+  _checkResponse(res) {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(`status: ${res.status}`)
+      }
+
+  }
+
   getInitialCards() {
     return fetch(`${this.baseUrl}cards`, {
       headers: {
@@ -13,13 +22,7 @@ export class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          return Promise.reject(`status: ${res.status}`)
-        }
-      });
+    .then(this._checkResponse);
   }
 
   //создание карточки
@@ -35,13 +38,7 @@ export class Api {
         link: link
       })
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          return Promise.reject(`status: ${res.status}`)
-        }
-      })
+    .then(this._checkResponse);
   }
 
   // получение пользователя
@@ -51,7 +48,7 @@ export class Api {
         authorization: this.token,
       }
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`status: ${res.status}`))
+    .then(this._checkResponse);
   };
   // изменение пользователя
   saveUserData(userData) {
@@ -66,7 +63,7 @@ export class Api {
         about: userData.popupProfession
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`status: ${res.status}`))
+    .then(this._checkResponse);
   };
   // изменение аватарки
   saveUserAvatar(userData) {
@@ -80,7 +77,7 @@ export class Api {
         avatar: userData.nameImg
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`status: ${res.status}`))
+    .then(this._checkResponse);
   };
 
   // поставить лайк
@@ -92,7 +89,7 @@ export class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`status: ${res.status}`))
+    .then(this._checkResponse);
   };
 
   // снять лайк
@@ -104,7 +101,7 @@ export class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`status: ${res.status}`))
+    .then(this._checkResponse);
   };
 
 
@@ -116,7 +113,7 @@ export class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`status: ${res.status}`))
+    .then(this._checkResponse);
   };
 
 }

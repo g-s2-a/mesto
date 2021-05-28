@@ -4,8 +4,6 @@ export default class Popup{// открывает или закрывает по�
     this._handleEscClose = this._handleEscClose.bind(this);
   }
 
-
-
   open() {
     this.popup.classList.add('popup_open');
     document.addEventListener("keydown", this._handleEscClose);

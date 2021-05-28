@@ -51,7 +51,7 @@ export const profileInfoSelector = ".profile__kind-of-activity"; //текуща�
 
 //элементы попап delete
 export const popupDeleteSelector = ".popup_delete"; // селектор попап фото
-export const idCardInput = document.querySelector("#prodId"); // поле ввода имени;
+export const idCardInput = document.querySelector("#prodId"); // поле ШВ;
 
 //элементы попап изменениея автара
 export const buttonEditAvatarPopup = document.querySelector(".profile__edit-avatar-button");
