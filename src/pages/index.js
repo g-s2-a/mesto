@@ -58,7 +58,7 @@ const entryProfile = (userData,evt) => {
 const popupProfile = new PopupWithForm(popupProfileSelector,entryProfile);
 const formPopapProfile = document.querySelector(popupProfileSelector).querySelector(formSelector);
 const popupProfileValidation = new FormValidator(settingsObject,formPopapProfile);
-popupProfileValidation.installingEventHandlers();
+popupProfileValidation.enableValidation();
 
 const popupImage = new PopupWithImage(popupFotoSelector);
 // открывает попап изображения
@@ -104,12 +104,12 @@ const sendAvatarForm = (item,evt) =>{
 const popupPlace = new PopupWithForm(popupPlaceSelector, drawingСardForm);
 const formPopapPlace = document.querySelector(popupPlaceSelector).querySelector(formSelector);
 const popupPlaceValidation = new FormValidator(settingsObject,formPopapPlace);
-popupPlaceValidation.installingEventHandlers();
+popupPlaceValidation.enableValidation();
 
 const popupAvatar = new PopupWithForm(popupEditAvatarSelector, sendAvatarForm);
 const formPopapAvatar = document.querySelector(popupEditAvatarSelector).querySelector(formSelector);
 const popupAvatarValidation = new FormValidator(settingsObject,formPopapAvatar);
-popupAvatarValidation.installingEventHandlers();
+popupAvatarValidation.enableValidation();
 
 const cardList = new Section(drawingСard,'.places');
 const userInfo = new UserInfo({profileUserSelector,profileInfoSelector,profileFotoSelector});
@@ -120,19 +120,19 @@ function openProfilePopup(){
   nameInput.value = name;
   jobInput.value = profession;
 
-  popupProfileValidation.enableValidation();
+  popupProfileValidation.clearErrors();
   popupProfile.open();
 }
 
 // открывает попап места
 function openPlacePopup(){
-  popupPlaceValidation.enableValidation();
+  popupPlaceValidation.clearErrors();
   popupPlace.open();
 }
 
 // открывает попап аватара
 function openEditAvatarPopup(){
-  popupAvatarValidation.enableValidation();
+  popupAvatarValidation.clearErrors();
   popupAvatar.open();
 }
 
@@ -192,9 +192,8 @@ getCards.catch(e => console.log(`Ошибка при получении карт
 const getUser = api.getUserData()
 getUser.catch(e => console.log(`Ошибка при получении userInfo ${e}`))
 
-Promise.all([getUser,getCards]).then(value => {
-  userInfo.setUserInfo(value[0]);
-  cardList.renderItems(value[1]);
-}, reason => {
-  console.log(reason)
-});
+Promise.all([getUser,getCards]).then(([userData, cards]) => {
+  userInfo.setUserInfo(userData);
+  cardList.renderItems(cards);
+})
+.catch(e => console.log(`Ошибка при получении данных ${e}`));

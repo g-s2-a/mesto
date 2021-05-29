@@ -41,7 +41,6 @@ export default class Card { //класс Card создаёт карточку с
 
     this._setSignLike();
     this._quantityLikes.textContent = this._likes.length;
-    card.querySelector('.attraction__like').classList.remove('attraction__like_b')
   }
 
   //установить слушатели событий

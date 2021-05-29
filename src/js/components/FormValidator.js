@@ -57,37 +57,36 @@ export default class FormValidator{
     }
   }
 
-  //установка обработчиков - при изменении инпута, будет проверка валидации на нем и включение/выключение кнопки
-  installingEventHandlers(){
+
+  //включает валидацию формы
+  enableValidation(){
+    //обхожу инпуты проверяю текущую валидность и вешаю обработчики на изменение
     this._inputList.forEach((inputElement) => {
+
+      // проверяю инпут
+      if (inputElement.value.trim()){ //если заполнен
+        this._checkInputValidity(inputElement);
+      }
+
+      //обработчик -  при изменении инпута, будет проверка влидации на нем и включение/выключение кнопки
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState(this._inputList, this._buttonElement);
       });
+
     });
+
+    if (this._inputList.length > 0){
+      this._toggleButtonState(); //включение/выключение кнопки
+    }
   }
 
-  _clearErrors(){
+  clearErrors(){
+    this._toggleButtonState();
     this._inputList.forEach((inputElement)=>{
       this._hideInputError(inputElement);
     });
   }
-
-  //выполняет валидацию формы при открытии
-  enableValidation(){
-    //обхожу инпуты проверяю текущую валидность
-    this._inputList.forEach((inputElement) => {
-      if (inputElement.value.trim()){ //если инпут заполнен проверяю
-        this._checkInputValidity(inputElement);
-      }
-    });
-    if (this._inputList.length > 0){
-      this._toggleButtonState(); //включение/выключение кнопки
-    }
-    this._clearErrors() // включение ошибок (при открытии формы скрываем все ошибки)
-  }
-
-
 
 }
 
